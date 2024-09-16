@@ -14,6 +14,12 @@ function Book(title, author, pages, isRead) {
 function addBookToLibrary(title, author, pages, isRead) {
   const newBook = new Book(title, author, pages, isRead);
   myLibrary.push(newBook);
+  displayBooks();
+}
+
+function removeBookFromLibrary(index) {
+  myLibrary.splice(index, 1); //Remove the book at the given index
+  displayBooks();
 }
 
 function displayBooks() {
@@ -29,9 +35,20 @@ function displayBooks() {
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
       <p><strong>Read:</strong> ${book.isRead ? 'Yes' : 'No'}</p>
+      
+      <button class="remove-btn" data-index="${index}">Remove</button>
     `;
 
     librayDiv.appendChild(bookCard);
+  });
+
+  // Attach event listeners to the remove buttons
+  const removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+    const index = event.target.getAttribute('data-index');
+    removeBookFromLibrary(index); //Call the remove function
+    });
   });
 }
 
