@@ -15,3 +15,22 @@
 .book-card p {
   margin: 8px 0;
 }
+
+dialog {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog input, dialog label {
+  margin: 8px 0;
+}
+
+#newBookButton {
+  margin-bottom: 20px;
+}
