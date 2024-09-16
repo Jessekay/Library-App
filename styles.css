@@ -16,14 +16,22 @@
   margin: 8px 0;
 }
 
-.remove-btn {
-  background-color: red;
+.remove-btn, .toggle-read-btn {
+  background-color: #008CBA;
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 4px;
   margin-top: 10px;
+}
+
+.remove-btn {
+  background-color: red;
+}
+
+.toggle-read-btn {
+  margin-right: 10px;
 }
 
 dialog {

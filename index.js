@@ -5,23 +5,27 @@ function Book(title, author, pages, isRead) {
   this.author = author;
   this.pages = pages
   this.isRead = isRead;
-  this.info = function() {
-    const readStatus = this.isRead ? 'read' : 'not yet read';
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`
-  };
 }
 
+//Method to toggle the read status
+Book.prototype.toggleReadStatus = function() {
+  this.isRead = !this.isRead;
+}
+
+//Adding a book to the array Library
 function addBookToLibrary(title, author, pages, isRead) {
   const newBook = new Book(title, author, pages, isRead);
   myLibrary.push(newBook);
   displayBooks();
 }
 
+//Remove book from the library
 function removeBookFromLibrary(index) {
   myLibrary.splice(index, 1); //Remove the book at the given index
   displayBooks();
 }
 
+//Display books in library 
 function displayBooks() {
   const librayDiv = document.getElementById('library');
   librayDiv.innerHTML = '',
@@ -35,7 +39,7 @@ function displayBooks() {
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
       <p><strong>Read:</strong> ${book.isRead ? 'Yes' : 'No'}</p>
-      
+      <button class="toggle-read-btn" data-index=${index}>Toggle Read Status</button>
       <button class="remove-btn" data-index="${index}">Remove</button>
     `;
 
@@ -48,6 +52,16 @@ function displayBooks() {
     button.addEventListener('click', (event) => {
     const index = event.target.getAttribute('data-index');
     removeBookFromLibrary(index); //Call the remove function
+    });
+  });
+
+  //Attach event listeners to the toggle read statusbuttons
+  const toggleReadButtons = document.querySelectorAll('.toggle-read-btn');
+  toggleReadButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const index = event.target.getAttribute('data-index');
+      myLibrary[index].toggleReadStatus(); //Toggle the read Status
+      displayBooks(); //Refresh the library display
     });
   });
 }
