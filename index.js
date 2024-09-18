@@ -1,16 +1,19 @@
 const myLibrary = [];
 
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages
-  this.isRead = isRead;
-}
+class Book{
+  constructor(title, author, pages, isRead) {
+      this.title = title;
+      this.author = author;
+      this.pages = pages
+      this.isRead = isRead;
+    }
 
 //Method to toggle the read status
-Book.prototype.toggleReadStatus = function() {
-  this.isRead = !this.isRead;
+toggleReadStatus() {
+    this.isRead = !this.isRead;
+  }
 }
+
 
 //Adding a book to the array Library
 function addBookToLibrary(title, author, pages, isRead) {
